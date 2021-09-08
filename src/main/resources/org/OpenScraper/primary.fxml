@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXProgressBar?>
+<?import io.github.palexdev.materialfx.controls.MFXRadioButton?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.OpenScraper.PrimaryController">
+   <children>
+      <TextField fx:id="keywords" layoutX="14.0" layoutY="15.0" prefHeight="26.0" prefWidth="586.0" promptText="Keywords" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="88.60000000000002" AnchorPane.topAnchor="15.0" />
+      <Button layoutX="548.0" layoutY="218.0" mnemonicParsing="false" onAction="#Initiate" prefHeight="26.0" prefWidth="61.0" text="Start" AnchorPane.rightAnchor="79.39999999999998" />
+      <ListView fx:id="lv" layoutX="-1.0" layoutY="126.0" prefHeight="359.0" prefWidth="689.0" AnchorPane.bottomAnchor="29.80000000000001" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="0.39999999999997726" AnchorPane.topAnchor="126.0" />
+      <Label fx:id="infolabel" layoutX="6.0" layoutY="485.0" prefHeight="26.0" prefWidth="683.0" text="Status:" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="0.0" />
+      <Text layoutX="21.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Browser" AnchorPane.leftAnchor="21.0" AnchorPane.topAnchor="58.05078125">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <Spinner fx:id="totalimagesperkeyword" editable="true" layoutX="672.0" layoutY="72.0" prefHeight="26.0" prefWidth="102.0" AnchorPane.rightAnchor="96.6" AnchorPane.topAnchor="72.0" />
+      <MFXProgressBar fx:id="pb" layoutX="-1.0" layoutY="118.0" prefHeight="7.0" prefWidth="690.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="0.0" />
+      <MFXButton buttonType="RAISED" layoutX="618.0" layoutY="15.0" onAction="#Initiate" prefHeight="26.0" prefWidth="59.0" text="Start" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="15.0" />
+      <MFXButton buttonType="RAISED" layoutX="788.0" layoutY="72.0" onAction="#openSettings" prefHeight="26.0" prefWidth="67.0" text="Settings" AnchorPane.rightAnchor="15.799999999999997" AnchorPane.topAnchor="72.0" />
+      <MFXRadioButton layoutX="21.0" layoutY="84.0" text="Chrome" AnchorPane.leftAnchor="21.0" AnchorPane.topAnchor="84.0">
+         <toggleGroup>
+            <ToggleGroup fx:id="browser" />
+         </toggleGroup>
+      </MFXRadioButton>
+      <MFXRadioButton layoutX="97.0" layoutY="85.0" selected="true" text="Firefox" toggleGroup="$browser" AnchorPane.leftAnchor="97.0" AnchorPane.topAnchor="85.0" />
+      <MFXRadioButton layoutX="178.0" layoutY="84.0" text="Edge" toggleGroup="$browser" AnchorPane.leftAnchor="178.0" AnchorPane.topAnchor="85.0" />
+   </children>
+</AnchorPane>

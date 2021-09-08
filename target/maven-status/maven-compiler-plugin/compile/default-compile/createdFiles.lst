@@ -1,0 +1,7 @@
+Engine\Properties.class
+org\OpenScraper\App.class
+org\OpenScraper\PrimaryController.class
+Engine\Downloader.class
+Engine\ImageScrapingService.class
+org\OpenScraper\SecondaryController.class
+org\OpenScraper\Starter.class

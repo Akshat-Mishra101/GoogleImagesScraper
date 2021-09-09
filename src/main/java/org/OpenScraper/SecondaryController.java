@@ -149,14 +149,32 @@ public class SecondaryController implements Initializable {
         }
     }
     @FXML
-    public void apply_properties()
-    {
+    public void apply_properties()throws Exception
+    {   String threading=threading_group.getSelectedToggle().toString().contains("Multi")?"M":"NO";
+        if(threading.equals("M"))
+        {
+            threading=total_threads.getSelectionModel().getSelectedItem().toString().equals("2 Threads")?"2":"N";
+
+        }
+        System.out.println(threading);
+        String NewKeysAndValues[][] = {{"proxy", "encode", "timeout", "dtimeout", "threads", "names", "save", "image_saving", "sretry", "dretry", "custom", "cc", "size", "delay"}, {proxy.getText().trim(), url_encoding.isSelected()?"YES":"NO", scraping_timeout.getValue().toString(),downloader_timeout.getValue().toString(), threading,random_string_concatenation.isSelected()?"YES":"NO",csv_file.isSelected()?"YES":"NO" ,separate_folders.isSelected()?"YES":"NO", scraper_retries.getValue().toString(), Downloader_retries.getValue().toString(), custom_sizes.isSelected()?"YES":"NO", creative_commons_licence.isSelected()?"YES":"NO", "L", click_delay.getValue().toString()}};
+        for (int i = 0; i < 14; i++) {
+            Properties.update(NewKeysAndValues[0][i], NewKeysAndValues[1][i]);
+        }
+        Properties.Save();
+       load_gui();
 
     }
     @FXML
-    public void reset_defaults()
+    public void reset_defaults()throws Exception
     {
+        String DefaultkeysAndValues[][] = {{"proxy", "encode", "timeout", "dtimeout", "threads", "names", "save", "image_saving", "sretry", "dretry", "custom", "cc", "size", "delay"}, {"scraperapi", "YES", "3000", "3000", "N", "YES", "YES", "YES", "40", "40", "YES", "YES", "L", "2000"}};
+        for (int i = 0; i < 14; i++) {
+            Properties.update(DefaultkeysAndValues[0][i], DefaultkeysAndValues[1][i]);
 
+        }
+        Properties.Save();
+        load_gui();
     }
 
 }

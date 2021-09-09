@@ -21,8 +21,8 @@ public class App extends Application {
         scene = new Scene(loadFXML("primary"), 1200, 600);
         stage.setScene(scene);
 
-
-
+        stage.setMinWidth(500);
+        stage.setMinHeight(300);
         stage.centerOnScreen();
         stage.setTitle("GoogleImagesScraper V1");
         stage.getIcons().add(new Image("file:///../Images/qis.png"));

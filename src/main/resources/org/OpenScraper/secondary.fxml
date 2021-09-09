@@ -63,8 +63,8 @@
          </font>
       </Text>
       <Separator layoutY="397.0" prefHeight="0.0" prefWidth="239.0" />
-      <MFXButton buttonType="RAISED" layoutX="598.0" layoutY="429.0" prefHeight="27.0" prefWidth="134.0" text="Reset Defaults" />
-      <MFXButton buttonType="RAISED" layoutX="762.0" layoutY="430.0" prefHeight="25.0" prefWidth="71.0" text="Apply" />
+      <MFXButton buttonType="RAISED" layoutX="598.0" layoutY="429.0" onAction="#reset_defaults" prefHeight="27.0" prefWidth="134.0" text="Reset Defaults" />
+      <MFXButton buttonType="RAISED" layoutX="762.0" layoutY="430.0" onAction="#apply_properties" prefHeight="25.0" prefWidth="71.0" text="Apply" />
       <Separator layoutX="505.0" layoutY="70.0" orientation="VERTICAL" prefHeight="392.0" prefWidth="10.0" />
       <MFXRadioButton fx:id="single_thread" layoutX="529.0" layoutY="124.0" onAction="#select_deselect" text="Single-Threaded">
          <toggleGroup>

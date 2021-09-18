@@ -1,4 +1,5 @@
 package org.OpenScraper;
+import Engine.ImageScrapingService;
 import Engine.Properties;
 
 import java.io.File;
@@ -8,7 +9,10 @@ public class Starter {
     public static void main(String args[])throws Exception
     {
         //properties have been tested
-
+        ImageScrapingService iss=new ImageScrapingService(false,"firefox");
+        iss.search("cat");
+        iss.stop();
+  /**
 
         boolean exists=new File("Data").exists();//checking to see if the folder exists
         if(!exists) {
@@ -38,6 +42,7 @@ public class Starter {
         }
 
         App.main(args);
+   **/
     }
 
 }

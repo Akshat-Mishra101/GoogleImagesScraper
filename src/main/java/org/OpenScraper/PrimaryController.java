@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Engine.DownloaderEngine;
 import Engine.Properties;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,6 +40,7 @@ public class PrimaryController implements Initializable {
       //start downloading
 
         String Browser=browser.getSelectedToggle().toString().contains("Edge")?"E":browser.getSelectedToggle().toString().contains("Firefox")?"F":"C";
+        Properties.current_browser=Browser;
 
         System.out.println(Browser);
 
@@ -54,6 +56,11 @@ public class PrimaryController implements Initializable {
         String all_keywords=keywords.getText().trim();
         System.out.println(all_keywords+" Total keywords");
         System.out.println(totalimagesperkeyword.getValue()+" Total images");
+        Properties.total_images=Integer.parseInt(totalimagesperkeyword.getValue().toString());
+
+        Downloader downloader=new Downloader(keywords.getText(),Properties.total_images,lv);
+        Thread rtx=new Thread(downloader);
+        rtx.start();
 
         }
     @FXML

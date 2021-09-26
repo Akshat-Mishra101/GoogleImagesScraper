@@ -6,6 +6,11 @@ import java.util.Scanner;
 
 public class Properties {
 
+    //dynamic properties
+    public static String current_browser="F";
+    public static int total_images=1;
+    //dynamic properties end
+
 
     static String proxy="";
     static String url_encoding="";

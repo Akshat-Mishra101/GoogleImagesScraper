@@ -7,14 +7,24 @@ import java.io.FileWriter;
 
 public class Starter {
     public static void main(String args[])throws Exception
-    {
+    {   //Secondary Controller - has been tested
+        // Primary Controller - has been tested
+        //Properties - has been tested
         //properties have been tested
+        /**
+        Properties.load();
         ImageScrapingService iss=new ImageScrapingService(false,"firefox");
         iss.search("cat");
         iss.stop();
-  /**
+
+  **/
 
         boolean exists=new File("Data").exists();//checking to see if the folder exists
+        boolean exists2=new File("ScrapedImages").exists();
+        if(!exists2)
+        {
+            new File("ScrapedImages").mkdir();
+        }
         if(!exists) {
             new File("Data").mkdir();
             //code for the first run
@@ -30,9 +40,9 @@ public class Starter {
         {
             new File("Data").mkdir();
 
-                String properties="gecko_driver_path:" +  "C:\\Users\\"+(System.getProperty("user.name"))+"\\Documents\\Drivers\\geckodriver.exe"+
-                            "\n"+"chrome_driver_path:" +   "C:\\Users\\"+(System.getProperty("user.name"))+"\\Documents\\Drivers\\chromedriver.exe"+
-                            "\n"+"edge_driver_path:"+"C:\\Users\\"+(System.getProperty("user.name"))+"\\Documents\\Drivers\\edgedriver.exe";
+                String properties="gecko_driver_path:" +  "Drivers/geckodriver.exe"+
+                            "\n"+"chrome_driver_path:" +   "Drivers/chromedriver.exe"+
+                            "\n"+"edge_driver_path:"+"Drivers/edgedriver.exe";
 
 
                 FileWriter fw = new FileWriter("Data/config2.conf");
@@ -40,9 +50,8 @@ public class Starter {
                 fw.close();
 
         }
-
+         Properties.load();
         App.main(args);
-   **/
-    }
+     }
 
 }

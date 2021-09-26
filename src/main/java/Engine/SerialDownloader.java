@@ -25,24 +25,24 @@ public class SerialDownloader
      * @param link takes the url of the image resource
      * @return returns the Success Or Failure
      */
-    public static String SecureDownload(String link, ListView lv)
+    public static String SecureDownload(String keyword,String link, ListView lv)
     {
 
         String report="";
         // This will get input data from the server
         InputStream inputStream = null;
         String prop=Properties.get("save_images");
-        String Folder_addition=getAFolderName(link)+"/";
+        String Folder_addition=getAFolderName(keyword)+"/";
 
 
-        System.out.println("detet folder name and then save it");
 
-        String destName ="Images/"+Folder_addition+"/"+getAName(link);
+
+        String destName ="ScrapedImages/"+Folder_addition+"/"+getAName(link);
 
         // This will read the data from the server;
 
 
-
+System.out.println(keyword+" link"+link+" downloader "+Properties.get("sretry"));
         OutputStream outputStream = null;
         int retry_count=0;
 
@@ -114,8 +114,7 @@ public class SerialDownloader
         String folder_name="";
         if(result)
         {
-            try{folder_name=s.split("/")[2];}
-            catch(Exception e){}
+            folder_name=s;
         }
         String resultant=folder_name.length()>0?folder_name:randomAlphabetic(10).toUpperCase();
         return result?resultant:"";
@@ -124,7 +123,20 @@ public class SerialDownloader
     private static String getAName(String link) {
 
         String greatest_slug=link.substring(link.lastIndexOf("/")+1);
+        String empty="";
+        for(int i=0;i<greatest_slug.length();i++)
+        {
+          char c=greatest_slug.charAt(i);
+          if((c>=48&&c<=57)||c==46||(c>=65&&c<=90)||(c>=97&&c<=122)||c==45)
+          {
+              empty+=c;
+          }
+        }
+        greatest_slug=empty;
+
+
         String appended_string=Properties.get("names").equals("YES")?randomAlphabetic(10).toUpperCase():"";//Appends Random Code When The Option Is Enabled
         return appended_string+(greatest_slug.length()>0?greatest_slug:randomAlphabetic(10).toUpperCase());
     }
+
 }

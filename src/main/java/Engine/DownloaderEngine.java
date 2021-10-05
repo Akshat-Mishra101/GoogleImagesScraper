@@ -19,6 +19,8 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 public class DownloaderEngine implements Runnable {
     String path;//Path To Your Downloads Folder
     int timeout;//The TimeOut For Web Scraping
+    String megalink;
+    ListView lv;
     public DownloaderEngine(String path, int timeout)
     {
 
@@ -27,13 +29,19 @@ public class DownloaderEngine implements Runnable {
 
 
     }
+
+    public void scheduledDownload(String link,ListView lv)
+    {
+          this.megalink=link;
+          this.lv=lv;
+    }
     public DownloaderEngine()
     {
 
 
     }
     String link;
-    ListView lv;
+
     public DownloaderEngine(String link, ListView lv)
     {
         this.link=link;
@@ -47,12 +55,7 @@ public class DownloaderEngine implements Runnable {
      * @param timeout
      * @param name
      */
-    public void download(String url,int timeout,String name, int RetryCount)
-    {
 
-
-
-    }
     public String SecureDownload()
     {
         String report="";
@@ -229,8 +232,7 @@ public class DownloaderEngine implements Runnable {
         String folder_name="";
         if(result)
         {
-            try{folder_name=s.split("/")[2];}
-            catch(Exception e){}
+            folder_name=s;
         }
         String resultant=folder_name.length()>0?folder_name:randomAlphabetic(10).toUpperCase();
         return result?resultant:"";
@@ -239,12 +241,23 @@ public class DownloaderEngine implements Runnable {
     private static String getAName(String link) {
 
         String greatest_slug=link.substring(link.lastIndexOf("/")+1);
+        String empty="";
+        for(int i=0;i<greatest_slug.length();i++)
+        {
+            char c=greatest_slug.charAt(i);
+            if((c>=48&&c<=57)||c==46||(c>=65&&c<=90)||(c>=97&&c<=122)||c==45)
+            {
+                empty+=c;
+            }
+        }
+        greatest_slug=empty;
+
+
         String appended_string=Properties.get("names").equals("YES")?randomAlphabetic(10).toUpperCase():"";//Appends Random Code When The Option Is Enabled
         return appended_string+(greatest_slug.length()>0?greatest_slug:randomAlphabetic(10).toUpperCase());
     }
-
     @Override
     public void run() {
-        SecureDownload();
+        SecureDownload(megalink,lv);
     }
 }

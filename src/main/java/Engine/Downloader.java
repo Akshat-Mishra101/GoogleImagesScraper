@@ -32,7 +32,7 @@ public class Downloader extends Task<Void> {
             lv.getItems().add("Initiating Selenium WebDriver");
         });
 
-        ImageScrapingService iss=new ImageScrapingService(true,Properties.current_browser,lv);// We are Setting the Browser To Be Headless By Default
+        ImageScrapingService iss=new ImageScrapingService(false,Properties.current_browser,lv);// We are Setting the Browser To Be Headless By Default
          List<String> urls=new ArrayList<String>();
 
      //Serial Download
@@ -77,12 +77,65 @@ public class Downloader extends Task<Void> {
              if(Properties.get("Threads").equals("2")) // 2 threads approach
              {
 
+             Thread rtx1=new Thread(){
+                 @Override
+                 public void run()
+                 {
+                     for(int i=0;i<midpoint;i++)
+                     {
+                     DownloaderEngine de=new DownloaderEngine();
+                     String res=de.SecureDownload(url[i],lv);
+                         int newi=i;
+                         if (res.equals("S"))
+                             Platform.runLater(() -> {
+                                 lv.getItems().add(url[newi] + " Downloaded Successfully");
+                             });
+                         else
+                             Platform.runLater(() -> {
+                                 lv.getItems().add(url[newi] + " Download Failed");
+                             });
+                     }
+                 }
+             };
 
+                 Thread rtx2=new Thread(){
+                     @Override
+                     public void run()
+                     {
+                         for(int i=midpoint;i<url.length;i++)
+                         {
+                             DownloaderEngine de=new DownloaderEngine();
+                             String res=de.SecureDownload(url[i],lv);
+                             int newi=i;
+                             if (res.equals("S"))
+                                 Platform.runLater(() -> {
+                                     lv.getItems().add(url[newi] + " Downloaded Successfully");
+                                 });
+                             else
+                                 Platform.runLater(() -> {
+                                     lv.getItems().add(url[newi] + " Download Failed");
+                                 });
+                         }
+                     }
+                 };
+
+             rtx1.start();
+             rtx2.start();
              }
              else  //n threads approach
              {
 
-             }
+               DownloaderEngine[] de=new DownloaderEngine[url.length];
+               Thread rt[]=new Thread[url.length];
+               for(int i=0;i<url.length;i++)
+               {
+                   de[i] = new DownloaderEngine();
+                   de[i].scheduledDownload(url[i],lv);
+                   rt[i] = new Thread(de[i]);
+                   rt[i].start();
+               }
+
+                    }
          }
 
          //We Download the images parallely

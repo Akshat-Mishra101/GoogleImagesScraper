@@ -11,6 +11,8 @@ public class Starter {
         // Primary Controller - has been tested
         //Properties - has been tested
         //properties have been tested
+        //single threading works
+        //iss works with the three browsers and drivers
         /**
         Properties.load();
         ImageScrapingService iss=new ImageScrapingService(false,"firefox");

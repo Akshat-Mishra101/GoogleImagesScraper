@@ -1,2 +1,2 @@
 # GoogleImagesScraper
-A Google image scraping bot written entirely in java, using selenium.
+A bot to scrape google images, written entirely in java
